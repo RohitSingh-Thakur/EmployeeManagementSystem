@@ -19,8 +19,8 @@ public class EmployeeManagementSystem {
 	public ModelMapper getModelMapper()
 	{
 		return new ModelMapper();
-	}
-	
+	}	 
+
 	@Bean
 	public RestTemplate getRestTemplate()
 	{
