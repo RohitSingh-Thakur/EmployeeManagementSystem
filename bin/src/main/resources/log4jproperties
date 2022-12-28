@@ -1,0 +1,41 @@
+## use two appenders, 1st one to log to console and 2nd one to log to a file 
+#
+##set level
+#
+#log4j.rootCategory=debug, file, console, info,error
+#
+##Appender Which writes to console
+#log4j.appender.console=org.apache.log4j.ConsoleAppender
+#log4j.appender.console.layout=org.apache.log4j.PatternLayout
+#log4j.appender.console.layout.ConversionPattern=%d{MM-dd-yyyy HH:mm:ss} %c %m%n
+#
+##Appender Which writes to file
+#log4j.appender.file=org.apache.log4j.RollingFileAppender
+#log4j.appender.file.File=F:/EMPLogFile.log
+#
+## Defining maximum size of a log file
+#log4j.appender.file.MaxFileSize=5mb
+#log4j.appender.file.MaxBackupIndex=5
+#log4j.appender.file.layout=org.apache.log4j.PatternLayout
+#log4j.appender.console.layout.ConversionPattern=%d{ISO8601} %5p [%t] %c{1}:%L - %m%n
+
+
+# initialize root logger with level ERROR for stdout and fout
+log4j.rootLogger=All
+# set the log level for these components
+log4j.logger.com.endeca=INFO
+log4j.logger.com.endeca.itl.web.metrics=INFO
+
+# add a ConsoleAppender to the logger stdout to write to the console
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+# use a simple message format
+log4j.appender.stdout.layout.ConversionPattern=%m%n
+
+# add a FileAppender to the logger fout
+log4j.appender.fout=org.apache.log4j.FileAppender
+# create a log file
+log4j.appender.fout.File=F:/crawl.log
+log4j.appender.fout.layout=org.apache.log4j.PatternLayout
+# use a more detailed message pattern
+log4j.appender.fout.layout.ConversionPattern=%p\t%d{ISO8601}\t%r\t%c\t[%t]\t%m%n
