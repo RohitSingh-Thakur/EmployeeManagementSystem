@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
@@ -55,7 +56,7 @@ class EmployeeManagementSystemTests {
 
 	// Hello sir help to test below test case for public void registerNewEmployeeTest(EmployeeDto dto) throws URISyntaxException
 	
-/*	private static EmployeeDto emp()
+	private static EmployeeDto emp()
 	{
 		EmployeeAddressDto address = new EmployeeAddressDto();
 	//	address.setAddressCode(101);
@@ -127,8 +128,9 @@ class EmployeeManagementSystemTests {
 		
 	}
 	
+
 	
-	@ParameterizedTest
+	@ParameterizedTest //dnaufh
 	@MethodSource("emp")
 	public void registerNewEmployeeTest(EmployeeDto dto) throws URISyntaxException
 	{
@@ -149,5 +151,5 @@ class EmployeeManagementSystemTests {
 		System.out.println(postForEntity.getStatusCodeValue());
 		
 		System.out.println("Test Ended...");
-	}*/
+	}
 }
