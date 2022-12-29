@@ -2,7 +2,7 @@ package com.rs.baseproject.util;
 
 public class PanNumberFormatter 
 {
-	public static String formatPanNumber(String panNumber)
+	public static String formatPanNumber(String panNumber) 
 	{
 		if(panNumber != null)
 		{

@@ -55,7 +55,7 @@ class EmployeeManagementSystemTests {
 
 	// Hello sir help to test below test case for public void registerNewEmployeeTest(EmployeeDto dto) throws URISyntaxException
 	
-	private static EmployeeDto emp()
+/*	private static EmployeeDto emp()
 	{
 		EmployeeAddressDto address = new EmployeeAddressDto();
 	//	address.setAddressCode(101);
@@ -149,5 +149,5 @@ class EmployeeManagementSystemTests {
 		System.out.println(postForEntity.getStatusCodeValue());
 		
 		System.out.println("Test Ended...");
-	}
+	}*/
 }
