@@ -16,26 +16,26 @@ import com.rs.baseproject.repository.EmployeeDao;
 
 @Component
 public class EmployeeCache {
-	
+
 	@Autowired
 	private EmployeeDao employeeDao;
-	
+
 	@Autowired
 	private ModelMapper mapper;
-	
+
 	public static Map<Integer, EmployeeDto> cache = new HashMap<Integer, EmployeeDto>();
-	
-	@Scheduled(cron = "*/10 * * * * *")
-	public void loadCache()
-	{
+
+	@Scheduled(cron = "*/240 * * * * *")
+	public void loadCache() {
 		System.out.println("Cache Loading Started.....");
-		
+
 		List<Employee> listOfEmployees = employeeDao.getAllEmployeeDetails();
-		List<EmployeeDto> collect = listOfEmployees.stream().map(e -> mapper.map(e, EmployeeDto.class)).collect(Collectors.toList());
+		List<EmployeeDto> collect = listOfEmployees.stream().map(e -> mapper.map(e, EmployeeDto.class))
+				.collect(Collectors.toList());
 		collect.forEach(employee -> cache.put(employee.getEmployeeId(), employee));
-				
+
 		System.out.println("Cache Loading Ended.....");
-		
+
 	}
 
 }

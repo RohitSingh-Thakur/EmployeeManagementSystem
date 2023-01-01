@@ -17,7 +17,7 @@ import com.rs.baseproject.custom.exception.NoRecordFoundException;
 import com.rs.baseproject.custom.exception.NoRecordFoundForGivenIdException;
 
 @RestControllerAdvice
-public class EMSControllerAdvice{
+public class EMSControllerAdvice {
 
 	@ExceptionHandler(EmptyFieldException.class)
 	public ResponseEntity<String> handleEmptyField(EmptyFieldException emptyFieldException) {
@@ -32,7 +32,8 @@ public class EMSControllerAdvice{
 	@ExceptionHandler(NoRecordFoundForGivenIdException.class)
 	public ResponseEntity<String> handleNoRecordFoundForGivenId(
 			NoRecordFoundForGivenIdException noRecordFoundException) {
-		return new ResponseEntity<String>(GlobalConstants_Exception.NO_RECORD_FOUND_FOR_GIVEN_ID + noRecordFoundException.getEmployeeId(),
+		return new ResponseEntity<String>(
+				GlobalConstants_Exception.NO_RECORD_FOUND_FOR_GIVEN_ID + noRecordFoundException.getEmployeeId(),
 				HttpStatus.NOT_FOUND);
 	}
 
@@ -52,8 +53,7 @@ public class EMSControllerAdvice{
 
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	public ResponseEntity<String> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex) {
-		return new ResponseEntity<String>(GlobalConstants_Exception.METHOD_REQUEST_NOT_SUPPORTED,
-				HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>(GlobalConstants_Exception.METHOD_REQUEST_NOT_SUPPORTED, HttpStatus.NOT_FOUND);
 	}
 
 }

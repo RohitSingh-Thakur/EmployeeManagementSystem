@@ -1,9 +1,8 @@
 package com.rs.baseproject.service;
 
-import static com.rs.baseproject.util.AgeCalculator.getAge; 
+import static com.rs.baseproject.util.AgeCalculator.getAge;
 import static com.rs.baseproject.util.PanNumberFormatter.formatPanNumber;
 
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,11 +12,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
 
-import com.rs.baseproject.ModelMapper.EmployeeModelToEmployee;
-import com.rs.baseproject.ModelMapper.EmployeeToEmployeeModel;
-import com.rs.baseproject.constant.GlobalConstants_Messages;
 import com.rs.baseproject.custom.exception.NoRecordFoundException;
 import com.rs.baseproject.custom.exception.NoRecordFoundForGivenIdException;
 import com.rs.baseproject.entity.Employee;
@@ -38,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee employee = this.mapper.map(employeeDto, Employee.class);
 
-		employee.setEmployeeJoiningDate(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
+		employee.setEmployeeJoiningDate(new SimpleDateFormat("yyyyMMdd").format(new Date()));
 		employee.setEmployeeAge(getAge(employee.getEmployeeDateOfBirth()));
 		employee.setEmployeePanNumber(formatPanNumber(employee.getEmployeePanNumber()));
 
@@ -54,8 +49,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<EmployeeDto> getAllEmployeeDetails() {
 
 		List<Employee> allEmployeeDetails = employeeDao.getAllEmployeeDetails();
-		List<EmployeeDto> collect = allEmployeeDetails.stream()
-				.map(e -> this.mapper.map(e, EmployeeDto.class)).collect(Collectors.toList());
+
+		List<EmployeeDto> collect = allEmployeeDetails.stream().map(e -> this.mapper.map(e, EmployeeDto.class))
+				.collect(Collectors.toList());
 		if (collect.isEmpty() == false) {
 			return collect;
 		} else {
@@ -87,10 +83,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeDto deleteEmployeeById(Integer employeeId) {
 		Employee emp = employeeDao.deleteEmployeeById(employeeId);
-		if(emp != null)
-		{
+		if (emp != null) {
 			return this.mapper.map(emp, EmployeeDto.class);
-		}else {
+		} else {
 			throw new NoRecordFoundForGivenIdException(employeeId);
 		}
 	}
@@ -98,10 +93,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeDto searchEmployeeByName(String employeeName) {
 		Employee searchedEmployee = employeeDao.searchEmployeeByName(employeeName);
-		if(searchedEmployee != null)
-		{
+		if (searchedEmployee != null) {
 			return this.mapper.map(searchedEmployee, EmployeeDto.class);
-		}else {
+		} else {
 			throw new NoRecordFoundException();
 		}
 	}
@@ -109,13 +103,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<EmployeeDto> searchEmployeeByDepartment(String employeeDepartment) {
 		List<Employee> listOfEmployees = employeeDao.searchEmployeeByDepartment(employeeDepartment);
-		if(listOfEmployees != null)
-		{
-			
-		return listOfEmployees.stream().map(listOfEmployee -> mapper.map(listOfEmployee ,EmployeeDto.class)).collect(Collectors.toList());
-			
-			
-		}else {
+		if (listOfEmployees != null) {
+
+			return listOfEmployees.stream().map(listOfEmployee -> mapper.map(listOfEmployee, EmployeeDto.class))
+					.collect(Collectors.toList());
+
+		} else {
 			throw new NoRecordFoundException();
 		}
 	}

@@ -1,6 +1,6 @@
 package com.rs.baseproject.entity;
 
-import java.util.List; 
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,15 +13,21 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Data
-
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
 	@Id
@@ -39,7 +45,7 @@ public class Employee {
 	private String employeePanNumber;
 	private String employeeDateOfBirth;
 	private String employeeAge;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "Employee_Id")
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -49,8 +55,7 @@ public class Employee {
 	@JoinColumn(name = "EMP_ID")
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<EmployeeAddress> employeeAddress;
-	
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "Employee_Id")
 	@Fetch(value = FetchMode.SUBSELECT)

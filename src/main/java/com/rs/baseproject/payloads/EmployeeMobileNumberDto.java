@@ -1,11 +1,19 @@
 package com.rs.baseproject.payloads;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-
-@Data
-public class EmployeeMobileNumberDto 
-{
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmployeeMobileNumberDto {
 	private Long id;
 	private Long mobileNumber;
 }

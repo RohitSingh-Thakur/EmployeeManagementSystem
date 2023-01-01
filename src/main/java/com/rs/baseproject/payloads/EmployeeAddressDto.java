@@ -1,17 +1,22 @@
 package com.rs.baseproject.payloads;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeAddressDto {
 
-
 	private Integer addressCode;
-	private String street;
 	private String state;
-	private String landMark;
 	private Integer pinCode;
 	private String address;
-
 }

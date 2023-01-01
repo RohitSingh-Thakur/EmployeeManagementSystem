@@ -14,16 +14,14 @@ public class EmployeeManagementSystem {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeManagementSystem.class, args);
 	}
-	
-	@Bean
-	public ModelMapper getModelMapper()
-	{
-		return new ModelMapper();
-	}	 
 
 	@Bean
-	public RestTemplate getRestTemplate()
-	{
+	public ModelMapper getModelMapper() {
+		return new ModelMapper();
+	}
+
+	@Bean
+	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
 }

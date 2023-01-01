@@ -1,6 +1,6 @@
 package com.rs.baseproject.repository;
 
-import java.lang.reflect.Field;  
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -10,12 +10,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ReflectionUtils;
-import com.rs.baseproject.entity.Employee;
-import com.rs.baseproject.payloads.EmployeeDto;
 
+import com.rs.baseproject.entity.Employee;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
@@ -41,6 +39,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employee;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployeeDetails() {
 		Session session = factory.openSession();
@@ -70,7 +69,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public Employee updateEmployeeByID(Integer employeeId, Map<String, Object> fields) {
 
@@ -82,8 +80,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			Employee searchEmployee = searchEmployee(employeeId);
 
 			if (searchEmployee != null) {
-				
-				
+
 				fields.forEach((Key, Value) -> {
 					Field myField = ReflectionUtils.findField(Employee.class, Key);
 					myField.setAccessible(true);
@@ -123,21 +120,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public Employee searchEmployeeByName(String employeeName) 
-	{
+	public Employee searchEmployeeByName(String employeeName) {
 		Session session = factory.openSession();
-		
+
 		try {
+			@SuppressWarnings("deprecation")
 			Criteria criteria = session.createCriteria(Employee.class);
-			Criteria add = criteria.add(Restrictions.like("employeeName", "%"+employeeName+"%"));
-			
+			Criteria add = criteria.add(Restrictions.like("employeeName", "%" + employeeName + "%"));
+
 			return (Employee) add.uniqueResult();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}finally {
+		} finally {
 			session.close();
-		}		
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -145,14 +142,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public List<Employee> searchEmployeeByDepartment(String employeeDepartment) {
 		Session session = factory.openSession();
 		try {
-				@SuppressWarnings("deprecation")
-				Criteria criteria = session.createCriteria(Employee.class);
-				Criteria add = criteria.add(Restrictions.like("employeeDepartment", "%" + employeeDepartment + "%"));
-				return add.list();
-		}catch (Exception e) {
-		e.printStackTrace();
-		return null;
-		}finally {
+			@SuppressWarnings("deprecation")
+			Criteria criteria = session.createCriteria(Employee.class);
+			Criteria add = criteria.add(Restrictions.like("employeeDepartment", "%" + employeeDepartment + "%"));
+			return add.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
 			session.close();
 		}
 	}
